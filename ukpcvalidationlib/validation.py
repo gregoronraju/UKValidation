@@ -8,6 +8,7 @@
 #
 """
 import re
+from exceptions.postcode_exception import UKPCException
 
 NON_ALPHA_RE = re.compile('[^A-Z0-9]+')
 POSTCODE_RE = re.compile('^(([A-Z]{1,2}[0-9][A-Z0-9]?|ASCN|STHL|TDCU|BBND|[BFS]IQQ|PCRN|TKCA) ?[0-9][A-Z]{2}|BFPO ?['
@@ -21,7 +22,8 @@ def validate_postcode(postcode):
     postcode = postcode[:-3] + ' ' + postcode[-3:]
     if POSTCODE_RE.match(postcode):
         return postcode
-    return None
+    else:
+        raise UKPCException("Please check the format")
 
 
-print(validate_postcode(postcode='sw1a 1AA'))
+print(validate_postcode(postcode='SW19 5AE'))
