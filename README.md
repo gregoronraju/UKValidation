@@ -1,4 +1,4 @@
-# UKValidation
+# UK Postcode Validation
 a library that supports validating and formatting postcodes for the UK
 The format is as follows, where A signifies a letter and 9 a digit:
 Format 	Coverage 	Example
