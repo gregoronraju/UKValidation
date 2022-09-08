@@ -17,11 +17,13 @@ app = Flask(__name__)
 def uk_postcode_validation():
     """Return a normalised postcode if valid else returns a response with error message"""
     postcode = request.args.get('postcode')
-    try:
-        validate_code = validate_postcode(postcode)
-        return jsonify({"Postcode": validate_code})
-    except UKPCException as err:
-        return jsonify({"Error": str(err)})
+    if postcode:
+        try:
+            validate_code = validate_postcode(postcode)
+            return jsonify({"Postcode": validate_code})
+        except UKPCException as err:
+            return jsonify({"Error": str(err)})
+    return jsonify({"Error": "Please check the parameter"})
 
 
 if __name__ == '__main__':
